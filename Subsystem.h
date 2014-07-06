@@ -12,46 +12,52 @@ class Subsystem {
 public:
 
 	void use() {
-		initialize_before_processing();
+		initializeBeforeProcessing();
 		processing = true;
 
-		for (i = 0; i < entities_to_process.size(); i++) {
-			process_entity(*entities_to_process[i]);
+		for (i = 0; i < entitiesToProcess.size(); i++) {
+			processEntity(*entitiesToProcess[i]);
 		}
 		
 		processing = false;
-		clean_up_after_processing();
+		cleanUpAfterProcessing();
 	}
 	
 private:
-	virtual void initialize_before_processing() {}
-	virtual void clean_up_after_processing() {}
-	virtual void process_entity(entity& entity) {}
+	vector<int> componentTypeIds;
+    vector<Entity*> entitiesToProcess;
+	vector<bool> addedEntitiesLookup;
+	size_t i;
+	bool processing;
+  
+	virtual void initializeBeforeProcessing() {}
+	virtual void cleanUpAfterProcessing() {}
+	virtual void processEntity(Entity& entity) {}
 
-	virtual vector<int> define_component_type_ids() = 0;	
+	virtual vector<int> defineComponentTypeIds() = 0;	
 
 	void init() {
-		component_type_ids = define_component_type_ids();
+		componentTypeIds = defineComponentTypeIds();
 	}
 
-	void add_entity(entity& entity) {
-		int id = entity.get_id();
+	void addEntity(Entity& entity) {
+        int id = entity.getId();
 
-		ensure_size_of_vector(added_entities_lookup, id);
-		added_entities_lookup.push_back(true);
-		entities_to_process.push_back(&entity);
+		ensureSizeOfVector(addedEntitiesLookup, id);
+		addedEntitiesLookup.push_back(true);
+		entitiesToProcess.push_back(&entity);
 	}
 
-	void remove_entity(entity& entity) {
-		int id = entity.get_id();
+    void removeEntity(Entity& entity) {
+        int id = entity.getId();
 
-		ensure_size_of_vector(added_entities_lookup, id + 1);
+		ensureSizeOfVector(addedEntitiesLookup, id + 1);
 
-		if (added_entities_lookup[id]) {
-			size_t index = index_of_item_in_vector(entities_to_process, &entity);
+		if (addedEntitiesLookup[id]) {
+			size_t index = indexOfItemInVector(entitiesToProcess, &entity);
 			bool remove_fast = true;
 
-			added_entities_lookup[id] = false;
+			addedEntitiesLookup[id] = false;
 
 			if (processing) {
 				if (index <= i) {
@@ -63,18 +69,12 @@ private:
 			}
 
 			if (remove_fast) {
-				entities_to_process[index] = entities_to_process.back();
-				entities_to_process.pop_back();
+				entitiesToProcess[index] = entitiesToProcess.back();
+				entitiesToProcess.pop_back();
 			}
 			else {
-				entities_to_process.erase(entities_to_process.begin() + index);
+				entitiesToProcess.erase(entitiesToProcess.begin() + index);
 			}
 		}
-	}
-
-	vector<int> component_type_ids;
-	vector<entity*> entities_to_process;
-	vector<bool> added_entities_lookup;
-	size_t i;
-	bool processing;
+	}	
 };

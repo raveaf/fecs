@@ -14,9 +14,9 @@ using namespace std;
 
 int main()
 {
-    entity ent = entity();
+    Entity ent = Entity();
     ComponentDe test = ComponentDe();
-    component_type_id<ComponentDe> test2 = register_component_type(test);
+    ComponentTypeId<ComponentDe> test2 = registerComponentType(test);
 
     int x = 5;
     int& i2 = x;
@@ -24,10 +24,10 @@ int main()
 
 
     //ent.component(test2);
-    int test3 = test2.get_id();
+    int test3 = test2.getId();
 
     //std::cout << std::exception().what();
-    std::cout << test2.get_id();
+    std::cout << test2.getId();
     std::cout << x << *i1 << i2;
 
     std::vector<bool> vec;
