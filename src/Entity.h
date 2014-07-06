@@ -8,18 +8,18 @@ using namespace std;
 class Entity
 {
 public:	
-	bool active = false;
+    bool active = false;
     vector<bool> usedComponentsIds;
 
     size_t getId() const {
-		return id;
-	}
-	
-	void setId(size_t id) {
-	  this->id = id;
-	}
+        return id;
+    }
+
+    void setId(size_t id) {
+        this->id = id;
+    }
 
 private:
-	size_t id;
-	
+    size_t id;
+
 };

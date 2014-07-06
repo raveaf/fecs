@@ -1,14 +1,14 @@
 #pragma once
 #include <iostream>
 
-#include "../Component.h"
+#include "../src/Component.h"
 
 class ComponentDe : public Component
 {
 public:	
 
-	void init() {
-		std::cout << "test";
-	}
-	void reset() {}
+    void init() {
+        std::cout << "test";
+    }
+    void reset() {}
 };

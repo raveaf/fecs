@@ -19,7 +19,7 @@ unordered_set<size_t> registeredComponentTypes;
 
 
 template<class T>
-ComponentTypeId<T>  registerComponentType(T& componentPrototype) {
+ComponentTypeId<T> registerComponentType(T& componentPrototype) {
 
     
     size_t hash = typeid(componentPrototype).hash_code();
@@ -27,7 +27,7 @@ ComponentTypeId<T>  registerComponentType(T& componentPrototype) {
     if (registeredComponentTypes.find(hash) == registeredComponentTypes.end() ) {
         registeredComponentTypes.insert(hash);
     } else {
-      //crash
+        //crash
     }
     
     return ComponentTypeId<T>();

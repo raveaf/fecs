@@ -9,13 +9,13 @@ public:
         static size_t idCounter = 0;
         id = idCounter;
         idCounter++;
-	}
+    }
 
     size_t getId() const {
-		return id;
-	}
+        return id;
+    }
 
 private:
-	size_t id;
+    size_t id;
 
 };

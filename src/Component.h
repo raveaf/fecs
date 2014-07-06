@@ -4,11 +4,11 @@
 class Component
 {
 public:
-	
-	bool active = false;
+
+    bool active = false;
 
     virtual void init() {}
     virtual void reset() {}
-	
+
 };
 
