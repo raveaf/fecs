@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ComponentTypeId.h"
+#include "ComponentTypeId.hpp"
 #include <vector>
 
 using namespace std;

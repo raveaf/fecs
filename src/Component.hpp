@@ -1,5 +1,5 @@
 #pragma once
-#include "ComponentTypeId.h"
+#include "ComponentTypeId.hpp"
 
 class Component
 {

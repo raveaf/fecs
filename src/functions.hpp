@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include <iterator>
 
-#include "Entity.h"
+#include "Entity.hpp"
 
 using namespace std;
 

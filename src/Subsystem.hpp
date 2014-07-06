@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Entity.h"
-#include "ComponentTypeId.h"
-#include "functions.h"
+#include "Entity.hpp"
+#include "ComponentTypeId.hpp"
+#include "functions.hpp"
 
 #include <vector>
 

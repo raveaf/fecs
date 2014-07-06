@@ -1,10 +1,10 @@
-#include "../src/Entity.h"
-#include "../src/Component.h"
-#include "../src/ComponentTypeId.h"
-#include "../src/Subsystem.h"
-#include "Test.h"
+#include "../src/Entity.hpp"
+#include "../src/Component.hpp"
+#include "../src/ComponentTypeId.hpp"
+#include "../src/Subsystem.hpp"
+#include "Test.hpp"
 
-#include "../src/functions.h"
+#include "../src/functions.hpp"
 
 #include <exception>
 #include <iostream>
