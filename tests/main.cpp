@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    Entity ent = Entity();
+    Entity ent = Entity(0, true);
     ComponentDe test = ComponentDe();
     ComponentTypeId<ComponentDe> test2 = registerComponentType(test);
 
@@ -44,5 +44,7 @@ int main()
     int t;
 
     std::cin >> t;
+
+    deleteEntity();
 
 }

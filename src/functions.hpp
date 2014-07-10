@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <deque>
 #include <unordered_set>
 #include <typeinfo>
 #include <iterator>
@@ -12,6 +13,8 @@ using namespace std;
 vector<void*> componentVectors;
 
 vector<Entity> entities;
+
+deque<size_t> unusedEntities;
 
 unordered_set<size_t> registeredComponentTypes;
 
@@ -49,4 +52,27 @@ size_t indexOfItemInVector(vector<T>& vector, const T& item) {
     }
 
     return -1;
+}
+
+Entity& createEntity () {
+    if (unusedEntities.empty() ) {
+        entities.emplace_back(entities.size(), true);
+
+        return entities.back();
+    } else {
+        Entity& entity = entities[unusedEntities.back()];
+
+        entity.active = true;
+        unusedEntities.pop_back();
+
+        return entity;
+    }
+}
+
+template<typename T>
+void deleteEntity () {
+
+    componentVectors.push_back(new vector<int>() );
+
+    vector<T> vec = (vector<T>*)componentVectors[0];
 }

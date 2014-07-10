@@ -8,15 +8,19 @@ using namespace std;
 class Entity
 {
 public:	
-    bool active = false;
+    bool active;
     vector<bool> usedComponentsIds;
+
+    Entity() {
+    }
+
+    Entity (size_t id, bool active) {
+        this->id = id;
+        this->active = active;
+    }
 
     size_t getId() const {
         return id;
-    }
-
-    void setId(size_t id) {
-        this->id = id;
     }
 
 private:
