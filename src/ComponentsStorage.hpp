@@ -3,7 +3,7 @@
 
 #endif // COMPONENTSSTORAGE_HPP
  class ComponentsStorage {
-    public:    
+    public:cd
 
 
  };
