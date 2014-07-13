@@ -45,6 +45,6 @@ int main()
 
     std::cin >> t;
 
-    deleteEntity();
+    //deleteEntity();
 
 }
