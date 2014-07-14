@@ -1,9 +1,16 @@
-#ifndef COMPONENTSSTORAGE_HPP
-#define COMPONENTSSTORAGE_HPP
+#pragma once
 
-#endif // COMPONENTSSTORAGE_HPP
- class ComponentsStorage {
-    public:cd
+#include "AbstractComponentsStorage.hpp"
+#include <vector>
 
+template<class T>
+class ComponentsStorage : AbstractComponentsStorage {
+public:
+    void deleteEntity (size_t id) {
 
- };
+    }
+
+private:
+    vector<T> components;
+
+};

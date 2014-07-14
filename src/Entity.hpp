@@ -2,6 +2,7 @@
 
 #include "ComponentTypeId.hpp"
 #include <vector>
+#include "global.hpp"
 
 using namespace std;
 
@@ -21,6 +22,12 @@ public:
 
     size_t getId() const {
         return id;
+    }
+
+    void kill() {
+        for (AbstractComponentsStorage* s: componentVectors) {
+            s->deleteEntity(id);
+        }
     }
 
 private:

@@ -7,10 +7,10 @@
 #include <iterator>
 
 #include "Entity.hpp"
+#include "AbstractComponentsStorage.hpp"
+#include "ComponentsStorage.hpp"
 
 using namespace std;
-
-vector<void*> componentVectors;
 
 vector<Entity> entities;
 
@@ -69,10 +69,4 @@ Entity& createEntity () {
     }
 }
 
-template<typename T>
-void deleteEntity () {
 
-    componentVectors.push_back(new vector<int>() );
-
-    vector<T> vec = (vector<T>*)componentVectors[0];
-}
