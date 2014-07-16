@@ -9,16 +9,17 @@
 #include "Entity.hpp"
 #include "AbstractComponentsStorage.hpp"
 #include "ComponentsStorage.hpp"
+#include "ComponentTypeId.hpp"
 
 using namespace std;
 
-vector<Entity> entities;
+extern vector<Entity> entities;
 
-deque<size_t> unusedEntities;
+extern deque<size_t> unusedEntities;
 
-unordered_set<size_t> registeredComponentTypes;
+extern unordered_set<size_t> registeredComponentTypes;
 
-
+extern vector<AbstractComponentsStorage*> componentVectors;
 
 
 template<class T>
@@ -32,7 +33,7 @@ ComponentTypeId<T> registerComponentType(T& componentPrototype) {
     } else {
         //crash
     }
-    
+
     return ComponentTypeId<T>();
 }
 
@@ -54,19 +55,6 @@ size_t indexOfItemInVector(vector<T>& vector, const T& item) {
     return -1;
 }
 
-Entity& createEntity () {
-    if (unusedEntities.empty() ) {
-        entities.emplace_back(entities.size(), true);
-
-        return entities.back();
-    } else {
-        Entity& entity = entities[unusedEntities.back()];
-
-        entity.active = true;
-        unusedEntities.pop_back();
-
-        return entity;
-    }
-}
+Entity& createEntity ();
 
 

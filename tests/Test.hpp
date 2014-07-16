@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-#include "../src/Component.hpp"
+#include "../headers/Component.hpp"
 
 class ComponentDe : public Component
 {
