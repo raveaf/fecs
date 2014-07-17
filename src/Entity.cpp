@@ -14,8 +14,10 @@ size_t Entity::getId() const {
     return id;
 }
 
-void Entity::kill() {
+void Entity::destroy() {
     for (AbstractComponentsStorage* s: componentVectors) {
-        s->deleteEntity(id);
+        s->destroyEntity(id);
+        active = false;
+        unusedEntities.push_back(id);
     }
 }
