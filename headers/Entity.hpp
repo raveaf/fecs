@@ -16,7 +16,7 @@ public:
 
     size_t getId() const;
 
-    void kill();
+    void destroy();
 
 private:
     size_t id;

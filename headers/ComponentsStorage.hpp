@@ -6,7 +6,7 @@
 template<class T>
 class ComponentsStorage : AbstractComponentsStorage {
 public:
-    void deleteEntity (size_t id) {
+    void destroyEntity (size_t id) {
 
     }
 
