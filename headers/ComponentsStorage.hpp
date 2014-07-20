@@ -7,10 +7,7 @@
 template<class T>
 class ComponentsStorage : AbstractComponentsStorage {
 public:
-    void destroyEntity (size_t id) {
-        Component& component = components[id];
-        component.active = false;
-    }
+    void destroyEntity (size_t id);
 
 private:
     vector<T> components;
