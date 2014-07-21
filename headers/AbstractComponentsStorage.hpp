@@ -6,6 +6,7 @@ using namespace std;
 
 class AbstractComponentsStorage {
 public:
-    virtual void destroyEntity (std::size_t id) = 0;
+    virtual void removeComponentFromEntity (std::size_t entityId) = 0;
+    virtual bool entityHasComponent (std::size_t entityId) = 0;
 
  };

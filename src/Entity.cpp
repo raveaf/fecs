@@ -16,7 +16,7 @@ size_t Entity::getId() const {
 
 void Entity::destroy() {
     for (AbstractComponentsStorage* s: componentVectors) {
-        s->destroyEntity(id);
+        s->removeComponentFromEntity(id);
         active = false;
         unusedEntities.push_back(id);
     }
