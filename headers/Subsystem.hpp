@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.hpp"
+#include "functions.hpp"
 
 #include <vector>
 
@@ -12,13 +13,14 @@ public:
     void use();
 
 private:
-    vector<int> componentTypeIds;
+    vector<size_t> componentTypeIds;
+    bool initialized = false;
 
     virtual void initializeBeforeProcessing();
     virtual void cleanUpAfterProcessing();
     virtual void processEntity(Entity& entity);
 
-    virtual vector<int> defineComponentTypeIds() = 0;
+    virtual vector<size_t> defineComponentTypeIds() = 0;
 
     void init();
 };

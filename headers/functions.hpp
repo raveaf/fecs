@@ -38,14 +38,14 @@ ComponentTypeId<T> registerComponentType(T& componentPrototype) {
 }
 
 template<typename T>
-void ensureSizeOfVector(vector<T>& vector, size_t size) {
+inline void ensureSizeOfVector(vector<T>& vector, size_t size) {
     if (vector.size() < size) {
         vector.resize(size);
     }
 }
 
 template<typename T>
-size_t indexOfItemInVector(vector<T>& vector, const T& item) {
+inline size_t indexOfItemInVector(vector<T>& vector, const T& item) {
     for (size_t i = 0; i < vector.size(); i++) {
         if (item == vector[i]) {
             return i;

@@ -21,3 +21,7 @@ void Entity::destroy() {
         unusedEntities.push_back(id);
     }
 }
+
+bool Entity::hasComponent(size_t typeId) {
+    componentVectors[typeId]->entityHasComponent(id);
+}

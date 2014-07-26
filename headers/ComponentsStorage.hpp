@@ -2,8 +2,8 @@
 
 #include "AbstractComponentsStorage.hpp"
 #include <vector>
+#include <cassert>
 #include "Component.hpp"
-#include "functions.hpp"
 
 template<class T>
 class ComponentsStorage : AbstractComponentsStorage {
