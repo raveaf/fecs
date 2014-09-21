@@ -1,67 +1,32 @@
 #pragma once
 
 #include <vector>
-#include <deque>
-
-#include "ComponentTypeId.hpp"
-#include "AbstractComponentsStorage.hpp"
-#include "ComponentsStorage.hpp"
-
+#include "AbstractEntityStorage.hpp"
 
 using namespace std;
 
-extern vector<AbstractComponentsStorage*> componentVectors;
-extern deque<size_t> unusedEntities;
-
 class Entity
 {
-public:	
+public:
     bool active;
-    vector<bool> usedComponentsIds;
+    size_t id;
+    AbstractEntityStorage& storage;
 
-    Entity();
-
-    Entity(size_t id, bool active);
-
-    size_t getId() const;
-
-    void destroy();
-
-    template <class T>
-    T* component(ComponentTypeId<T> type) {
-        ComponentsStorage<T>& componentsStorage = componentVectors[type.getId()];
-
-        return componentsStorage.componentOfEntity(id);
+    void destroy(){
+        storage.destroyEntity(*this);
+        active = false;
+        reset();
     }
 
-    template <class T>
-    T addComponent(ComponentTypeId<T> type) {
-        ComponentsStorage<T>& componentsStorage = componentVectors[type.getId()];
-
-        return componentsStorage.addComponentToEntity(id);
+    void initialize() {
+        active = true;
+        init();
     }
-
-    template <class T>
-    void removeComponent (ComponentTypeId<T> type) {
-        ComponentsStorage<T>& componentsStorage = componentVectors[type.getId()];
-
-        componentsStorage.removeComponentFromEntity(id);
-    }
-
-    template <class T>
-    bool hasComponent (ComponentTypeId<T> type) {
-        ComponentsStorage<T>& componentsStorage = componentVectors[type.getId()];
-
-        return componentsStorage.entityHasComponent(id);
-    }
-
-    bool hasComponent(size_t typeId);
-
-
-
-
 
 private:
-    size_t id;
+    virtual void init(){}
+    virtual void reset(){}
+
+
 
 };
