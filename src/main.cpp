@@ -2,10 +2,10 @@
 
 using namespace std;
 
-int* testt (int p) {
+int testt (int p) {
     cout << p << endl;
 
-    return &p;
+    return p;
 }
 
 
@@ -18,7 +18,7 @@ int main()
 
     test = 5;
 
-    cout << testt(test2) << endl;
+    cout << testt(test4) << endl;
 
     cout << test2 << endl;
     return 0;
