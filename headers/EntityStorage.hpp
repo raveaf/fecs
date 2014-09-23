@@ -49,11 +49,11 @@ public:
     }
 
 
-    void destroyEntity (Entity* entity){
-        unusedEntities.emplace_back(entity->id);
+    void destroyEntity (T& entity){
+        unusedEntities.emplace_back(entity.id);
 
-        entity->active = false;
-        entity->doReset();
+        entity.active = false;
+        entity.doReset();
     }
 };
 

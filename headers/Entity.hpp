@@ -10,15 +10,12 @@ struct Entity
 public:
     bool active;
     const size_t id;
+    AbstractEntityStorage* storage;
 
     Entity () = delete;
     explicit Entity (size_t id, AbstractEntityStorage* storage) :id {id}, storage {storage} {
 
     }
-
-    void destroy(){
-        storage->destroyEntity(this);
-    }        
 
     void doInit () {
         init();
@@ -30,8 +27,7 @@ public:
     }
 
 
-private:
-    AbstractEntityStorage* storage;
+private:    
 
     virtual void init(){}
     virtual void reset(){}

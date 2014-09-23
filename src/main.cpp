@@ -80,16 +80,16 @@ int main()
 
     TestEntity& testEntity = createEntity(type);
 
-    testEntity.teststr = "blahblah";
+    //testEntity.teststr = "blahblah";
 
     TestEntity& testEntity2 = createEntity(type);
 
-    testEntity2.teststr = "blahblahhjfjhj";
+    //testEntity2.teststr = "blahblahhjfjhj";
 
 
     testProcessor->use();
 
-    testEntity.destroy();
+    destroyEntity(testEntity);
 
 
 

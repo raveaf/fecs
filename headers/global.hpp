@@ -17,3 +17,8 @@ T& createEntity (EntityType<T>& type) {
 
     return storage->createEntity();
 }
+
+template <class T>
+void destroyEntity (T& entity) {
+    entity.storage->destroyEntity(&entity);
+}
