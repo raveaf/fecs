@@ -1,7 +1,8 @@
 #pragma once
 
-class Entity ;
+struct Entity ;
+
 class AbstractEntityStorage {
 public:
-    virtual void destroyEntity(Entity& entity) = 0;
+    virtual void destroyEntity(Entity* entity) = 0;
 };

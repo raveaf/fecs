@@ -5,28 +5,35 @@
 
 using namespace std;
 
-class Entity
+struct Entity
 {
 public:
     bool active;
-    size_t id;
-    AbstractEntityStorage& storage;
+    const size_t id;
 
-    void destroy(){
-        storage.destroyEntity(*this);
-        active = false;
-        reset();
+    Entity () = delete;
+    explicit Entity (size_t id, AbstractEntityStorage* storage) :id {id}, storage {storage} {
+
     }
 
-    void initialize() {
-        active = true;
+    void destroy(){
+        storage->destroyEntity(this);
+    }        
+
+    void doInit () {
         init();
     }
 
+    void doReset() {
+        reset();
+
+    }
+
+
 private:
+    AbstractEntityStorage* storage;
+
     virtual void init(){}
     virtual void reset(){}
-
-
 
 };
