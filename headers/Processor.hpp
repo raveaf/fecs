@@ -16,10 +16,13 @@ public:
 
     void use() {
         EntityStorage<T>* storage = static_cast<EntityStorage<T>*> (entityStorages[entityTypeId]);
+        vector<T>& entities = storage->entities;
 
         initializeBeforeProcessing();
 
-        for (T& entity:  storage->entities) {
+        for (int i = 0; i < entities.size(); i++) {
+            T& entity = entities[i];
+
             if (entity.active) {
                 process(entity);
             }

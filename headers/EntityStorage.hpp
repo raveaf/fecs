@@ -3,14 +3,11 @@
 #include <vector>
 #include <deque>
 
-#include "AbstractEntityStorage.hpp"
-#include "Entity.hpp"
-
 
 using namespace std;
 
 template<class T>
-class EntityStorage : public AbstractEntityStorage{
+class EntityStorage {
 private:    
     deque<int> unusedEntities;
 
@@ -25,13 +22,13 @@ public:
             unusedEntities.emplace_back(currentSize);
             entities.emplace_back(currentSize, this);
 
-            Entity& entity = entities.back();
+            T& entity = entities.back();
             entity.active = false;
         }
     }
 
     T& createEntity () {
-        Entity* entity;
+        T* entity;
 
         if (unusedEntities.empty() ) {
             entities.emplace_back(entities.size(), this);
@@ -45,7 +42,7 @@ public:
         entity->active = true;
         entity->doInit();
 
-        return *static_cast<T*>(entity);
+        return *entity;
     }
 
 

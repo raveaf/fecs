@@ -1,5 +1,4 @@
 #include <vector>
-#include "../headers/AbstractEntityStorage.hpp"
 #include "../headers/Entity.hpp"
 #include "../headers/EntityStorage.hpp"
 #include "../headers/EntityType.hpp"
@@ -9,6 +8,6 @@
 using namespace std;
 
 
-deque<AbstractEntityStorage*> entityStorages;
+vector<void*> entityStorages;
 
 

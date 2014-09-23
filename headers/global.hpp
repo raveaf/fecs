@@ -1,12 +1,11 @@
 #pragma once
 
 #include <vector>
-#include "AbstractEntityStorage.hpp"
 #include "EntityStorage.hpp"
 
 using namespace std;
 
-extern deque<AbstractEntityStorage*> entityStorages;
+extern vector<void*> entityStorages;
 
 template <class T>
 class EntityType;
@@ -20,5 +19,5 @@ T& createEntity (EntityType<T>& type) {
 
 template <class T>
 void destroyEntity (T& entity) {
-    entity.storage->destroyEntity(&entity);
+    entity.storage->destroyEntity(entity);
 }

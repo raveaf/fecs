@@ -1,19 +1,21 @@
 #pragma once
 
 #include <vector>
-#include "AbstractEntityStorage.hpp"
+
+#include "EntityStorage.hpp"
 
 using namespace std;
 
+template<class T>
 struct Entity
 {
 public:
     bool active;
     const size_t id;
-    AbstractEntityStorage* storage;
+    EntityStorage<T>* storage;
 
     Entity () = delete;
-    explicit Entity (size_t id, AbstractEntityStorage* storage) :id {id}, storage {storage} {
+    Entity (size_t id, EntityStorage<T>* storage) :id {id}, storage {storage} {
 
     }
 
@@ -23,7 +25,6 @@ public:
 
     void doReset() {
         reset();
-
     }
 
 

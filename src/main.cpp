@@ -1,6 +1,5 @@
 #include <iostream>
 //#include "../headers/public.hpp"
-#include "../headers/AbstractEntityStorage.hpp"
 #include "../headers/Entity.hpp"
 #include "../headers/EntityStorage.hpp"
 #include "../headers/EntityType.hpp"
@@ -21,29 +20,32 @@ int testt (int p) {
 
 
 
-struct TestEntity : Entity {
+struct TestEntity : public Entity<TestEntity> {
     using Entity::Entity;
 
 public:
     string teststr = "test";
+    static EntityType<TestEntity> type;
 
 
 private:
-    void reset() {
+    virtual void reset() {
         cout << "reset" << endl;
     }
 
-    void init() {
+    virtual void init() {
         cout << "init" << endl;
     }
 };
 
-EntityType<TestEntity> type;
+EntityType<TestEntity> TestEntity::type;
+
+
 
 
 class TestProcessor : public Processor<TestEntity> {
+    using Processor::Processor;
 public:
-    TestProcessor (EntityType<TestEntity> type) : Processor<TestEntity> (type) {}
 
 private:
 
@@ -60,36 +62,34 @@ private:
 
 int main()
 {
-    int test = 6;
-    int& test2 = test;
-    int* test3 = &test;
-    int& test4 = *test3;
-    int* test5;
+    TestProcessor* testProcessor = new TestProcessor(TestEntity::type);
 
-    test = 5;
+    TestEntity& testEntity = createEntity(TestEntity::type);
 
-    cout << testt(test4) << endl;
+    testEntity.teststr = "blahblah";
 
-    test5 = test3;
-    test2 = *test3;
+    TestEntity& testEntity2 = createEntity(TestEntity::type);
 
-    cout << &test2 << endl;
-    cout << test3 << endl;
+    testEntity2.teststr = "blahblahhjfjhj";
 
-    TestProcessor* testProcessor = new TestProcessor(type);
+    TestEntity* testEntity3 = &createEntity(TestEntity::type);
+    testEntity3->teststr = "ddssaasffafvbgfffdssdf";
 
-    TestEntity& testEntity = createEntity(type);
+    testEntity3 = &createEntity(TestEntity::type);
+    testEntity3->teststr = "dfgdweffffaddddddddddddddddddfd";
 
-    //testEntity.teststr = "blahblah";
+    testEntity3 = &createEntity(TestEntity::type);
+    testEntity3->teststr = "q2342456434564";
 
-    TestEntity& testEntity2 = createEntity(type);
-
-    //testEntity2.teststr = "blahblahhjfjhj";
-
+    testEntity3 = &createEntity(TestEntity::type);
+    testEntity3->teststr = "+++##+ää+##";
 
     testProcessor->use();
+    testProcessor->use();
 
-    destroyEntity(testEntity);
+    destroyEntity(*testEntity3);
+
+    testProcessor->use();
 
 
 
